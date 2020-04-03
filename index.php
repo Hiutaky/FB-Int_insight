@@ -37,50 +37,6 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'FORUM_INSIGHTS_VERSION', '1.0.0' );
 
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-forum-insights-activator.php
- */
-function activate_forum_insights() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-forum-insights-activator.php';
-	Forum_Insights_Activator::activate();
-}
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-forum-insights-deactivator.php
- */
-function deactivate_forum_insights() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-forum-insights-deactivator.php';
-	Forum_Insights_Deactivator::deactivate();
-}
-
-register_activation_hook( __FILE__, 'activate_forum_insights' );
-register_deactivation_hook( __FILE__, 'deactivate_forum_insights' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-forum-insights.php';
-
-/**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
-function run_forum_insights() {
-
-	$plugin = new Forum_Insights();
-	$plugin->run();
-
-}
-run_forum_insights();
-
 //AJAX Action
 add_action("wp_ajax_get_interest", "get_interest");
 add_action( 'wp_ajax_nopriv_get_interest', 'get_interest' );
